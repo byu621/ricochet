@@ -1,0 +1,7 @@
+.topbar {
+    background-color: teal;
+    margin-left: 25%;
+    padding: 2px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
