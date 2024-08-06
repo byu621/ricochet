@@ -24,7 +24,7 @@ function Board({setMoves} : Props) {
         let robot = selectedSquare
 
         let next = robot;
-        while (next - size >= 0 && !walls.includes(next - size)) {
+        while (next - size >= 0 && !walls.includes(next - size) && !robots.includes(next - size)) {
             next -= size;
         }
 
@@ -33,6 +33,8 @@ function Board({setMoves} : Props) {
             setRobots((currentRobots) =>
                 currentRobots.map((currentRobot) => (currentRobot === robot ? next : currentRobot))
             );
+
+            setSelectedSquare(next);
         }
     }
 
@@ -41,7 +43,7 @@ function Board({setMoves} : Props) {
         let robot = selectedSquare
         
         let next = robot;
-        while (next + size < size ** 2 && !walls.includes(next + size)) {
+        while (next + size < size ** 2 && !walls.includes(next + size) && !robots.includes(next + size)) {
             next += size;
         }
 
@@ -50,6 +52,8 @@ function Board({setMoves} : Props) {
             setRobots((currentRobots) =>
                 currentRobots.map((currentRobot) => (currentRobot === robot ? next : currentRobot))
             );
+
+            setSelectedSquare(next);
         }
     }
 
@@ -58,7 +62,7 @@ function Board({setMoves} : Props) {
         let robot = selectedSquare
         
         let next = robot;
-        while (next % size != 0 && !walls.includes(next - 1)) {
+        while (next % size != 0 && !walls.includes(next - 1) && !robots.includes(next - 1)) {
             next -= 1;
         }
 
@@ -67,6 +71,8 @@ function Board({setMoves} : Props) {
             setRobots((currentRobots) =>
                 currentRobots.map((currentRobot) => (currentRobot === robot ? next : currentRobot))
             );
+            
+            setSelectedSquare(next);
         }
     }
 
@@ -75,7 +81,7 @@ function Board({setMoves} : Props) {
         let robot = selectedSquare
 
         let next = robot;
-        while (next % size != size - 1 && !walls.includes(next + 1)) {
+        while (next % size != size - 1 && !walls.includes(next + 1) && !robots.includes(next + 1)) {
             next += 1;
         }
 
@@ -84,6 +90,8 @@ function Board({setMoves} : Props) {
             setRobots((currentRobots) =>
                 currentRobots.map((currentRobot) => (currentRobot === robot ? next : currentRobot))
             );
+
+            setSelectedSquare(next);
         }
     }
 
