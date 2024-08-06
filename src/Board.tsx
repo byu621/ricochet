@@ -4,13 +4,14 @@ import useArrowKeyNavigation from "./useArrowKeyNavigation";
 
 interface Props {
     setMoves: Dispatch<SetStateAction<number>>;
+    robots: number[];
+    setRobots: Dispatch<SetStateAction<number[]>>;
+    size: number;
 }
 
-function Board({setMoves} : Props) {
-    const size = 5;
+function Board({setMoves, robots, setRobots, size} : Props) {
     const [selectedSquare, setSelectedSquare] = useState(5);
-    const [robots, setRobots] = useState([3,4]);
-    const walls = [0, 24];
+    const walls = [0, 12, 24];
     const portal = 1;
 
     useArrowKeyNavigation({moveUp, moveDown, moveLeft, moveRight});
