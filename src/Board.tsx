@@ -11,7 +11,8 @@ interface Props {
 
 function Board({setMoves, robots, setRobots, size} : Props) {
     const [selectedSquare, setSelectedSquare] = useState(5);
-    const walls = [0, 12, 24];
+    const botWalls = [12];
+    const rightWalls = [12];
     const portal = 1;
 
     useArrowKeyNavigation({moveUp, moveDown, moveLeft, moveRight});
@@ -25,7 +26,7 @@ function Board({setMoves, robots, setRobots, size} : Props) {
         let robot = selectedSquare
 
         let next = robot;
-        while (next - size >= 0 && !walls.includes(next - size) && !robots.includes(next - size)) {
+        while (next - size >= 0 && !botWalls.includes(next - size) && !robots.includes(next - size)) {
             next -= size;
         }
 
@@ -44,7 +45,7 @@ function Board({setMoves, robots, setRobots, size} : Props) {
         let robot = selectedSquare
         
         let next = robot;
-        while (next + size < size ** 2 && !walls.includes(next + size) && !robots.includes(next + size)) {
+        while (next + size < size ** 2 && !botWalls.includes(next) && !robots.includes(next + size)) {
             next += size;
         }
 
@@ -63,7 +64,7 @@ function Board({setMoves, robots, setRobots, size} : Props) {
         let robot = selectedSquare
         
         let next = robot;
-        while (next % size != 0 && !walls.includes(next - 1) && !robots.includes(next - 1)) {
+        while (next % size != 0 && !rightWalls.includes(next - 1) && !robots.includes(next - 1)) {
             next -= 1;
         }
 
@@ -82,7 +83,7 @@ function Board({setMoves, robots, setRobots, size} : Props) {
         let robot = selectedSquare
 
         let next = robot;
-        while (next % size != size - 1 && !walls.includes(next + 1) && !robots.includes(next + 1)) {
+        while (next % size != size - 1 && !rightWalls.includes(next) && !robots.includes(next + 1)) {
             next += 1;
         }
 
@@ -99,8 +100,18 @@ function Board({setMoves, robots, setRobots, size} : Props) {
     return (
         <>
             <div className='container'>
-            {Array(25).fill(null).map((_,i) => 
-            <Square index={i} handleClick={handleClick} isSelected={selectedSquare === i} isRobot={robots.includes(i)} isWall={walls.includes(i)} isPortal={portal === i}/>
+            {Array(size ** 2).fill(null).map((_,i) => 
+                <Square 
+                    index={i} 
+                    handleClick={handleClick} 
+                    isSelected={selectedSquare === i} 
+                    isRobot={robots.includes(i)} 
+                    isPortal={portal === i} 
+                    isTopWall={botWalls.includes(i - size)} 
+                    isBotWall={botWalls.includes(i)}
+                    isRightWall={rightWalls.includes(i)}
+                    isLeftWall={rightWalls.includes(i-1)}
+                />
             )}
             </div>
         </>

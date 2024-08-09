@@ -19,15 +19,19 @@ function useArrowKeyNavigation({
         const handleKeyDown = (event: KeyboardEvent) => {
             switch (event.key) {
                 case 'ArrowUp':
+                    event.preventDefault();
                     moveUp();
                     break;
                 case 'ArrowDown':
+                    event.preventDefault();
                     moveDown();
                     break;
                 case 'ArrowLeft':
+                    event.preventDefault();
                     moveLeft();
                     break;
                 case 'ArrowRight':
+                    event.preventDefault();
                     moveRight();
                     break;
                 default:
