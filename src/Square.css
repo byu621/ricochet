@@ -7,7 +7,7 @@
 }
 
 .item.selected {
-    background-color: green;
+    background-color: rgba(25, 241, 25, 0.532);
 }
 
 .item.topWall {

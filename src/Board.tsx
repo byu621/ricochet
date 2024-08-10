@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import Square from "./Square";
 import useArrowKeyNavigation from "./useArrowKeyNavigation";
+import './Board.css'
 
 interface Props {
     setMoves: Dispatch<SetStateAction<number>>;
@@ -11,9 +12,13 @@ interface Props {
 
 function Board({setMoves, robots, setRobots, size} : Props) {
     const [selectedSquare, setSelectedSquare] = useState(5);
-    const botWalls = [12];
-    const rightWalls = [12];
-    const portal = 1;
+    const botWalls = [17, 22, 25, 30, 70, 74, 79, 80, 92, 99, 103, 104, 135, 136, 148, 150, 159, 160, 168, 173, 183, 193, 217, 222, 227];
+    const rightWalls = [4, 10, 22, 24, 32, 46, 74, 86, 98, 107, 118, 120, 134, 136, 147, 165, 168, 188, 199, 209, 216, 227, 238, 244, 251];
+    const yellowMarkers = [22, 46, 148, 168];
+    const redMarkers = [74, 99, 209, 238];
+    const blueMarkers = [86, 108, 166, 189];
+    const greenMarkers = [25, 33, 217, 227];
+    const portal = 199;
 
     useArrowKeyNavigation({moveUp, moveDown, moveLeft, moveRight});
     function handleClick(index: number)
@@ -105,12 +110,16 @@ function Board({setMoves, robots, setRobots, size} : Props) {
                     index={i} 
                     handleClick={handleClick} 
                     isSelected={selectedSquare === i} 
-                    isRobot={robots.includes(i)} 
                     isPortal={portal === i} 
                     isTopWall={botWalls.includes(i - size)} 
                     isBotWall={botWalls.includes(i)}
                     isRightWall={rightWalls.includes(i)}
                     isLeftWall={rightWalls.includes(i-1)}
+                    yellowMarker={yellowMarkers.includes(i) ? yellowMarkers.indexOf(i) + 1 : undefined}
+                    redMarker={redMarkers.includes(i) ? redMarkers.indexOf(i) + 1 : undefined}
+                    blueMarker={blueMarkers.includes(i) ? blueMarkers.indexOf(i) + 1 : undefined}
+                    greenMarker={greenMarkers.includes(i) ? greenMarkers.indexOf(i) + 1 : undefined}
+                    ballIndex={robots.includes(i) ? robots.indexOf(i) + 1 : undefined}
                 />
             )}
             </div>

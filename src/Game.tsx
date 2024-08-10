@@ -4,10 +4,10 @@ import './Game.css'
 
 function Game()
 {
-    const size = 5;
+    const size = 16;
     const getRandomNumber = () => Math.floor(Math.random() * size**2);
     const[moves, setMoves] = useState(0);
-    const [robots, setRobots] = useState([getRandomNumber(),getRandomNumber()]);
+    const [robots, setRobots] = useState([getRandomNumber(),getRandomNumber(),getRandomNumber(), getRandomNumber()]);
 
     function Reset()
     {
