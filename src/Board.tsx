@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Square from "./Square";
 import useArrowKeyNavigation from "./useArrowKeyNavigation";
 import './Board.css'

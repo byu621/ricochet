@@ -1,33 +1,30 @@
 .item {
-    background-color: grey;
-    border-right: 1.5px #242424 solid;
-    border-left: 1.5px #242424 solid;
-    border-bottom: 1.5px #242424 solid;
-    border-top: 1.5px #242424 solid;
+    background-color: lightgrey;
+    border: 1.5px white solid;
 }
 
 .item.selected {
-    background-color: rgba(25, 241, 25, 0.532);
+    background-color: darkorange;
 }
 
 .item.restricted {
-    background-color: red;
+    background-color: darkred;
 }
 
 .item.topWall {
-    border-top: 1.5px red solid;
+    border-top: 1.5px darkred solid;
 }
 
 .item.botWall {
-    border-bottom: 1.5px red solid;
+    border-bottom: 1.5px darkred solid;
 }
 
 .item.leftWall {
-    border-left: 1.5px red solid;
+    border-left: 1.5px darkred solid;
 }
 
 .item.rightWall {
-    border-right: 1.5px red solid;
+    border-right: 1.5px darkred solid;
 }
 
 .item img {

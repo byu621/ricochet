@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Board from "./Board";
 import './Game.css'
+import Modal from "./Modal";
 
 function GetMarkerImage(marker: number)
 {
@@ -17,9 +18,9 @@ function Game()
     const getRobotPosition = () => Math.floor(Math.random() * size**2);
     const [moves, setMoves] = useState(0);
     const [robots, setRobots] = useState([getRobotPosition(),getRobotPosition(),getRobotPosition(), getRobotPosition()]);
-    const [originalRobots] = useState(robots);
+    const [originalRobots, setOriginalRobots] = useState(robots);
 
-    const [marker] = useState(Math.floor(Math.random() * 17));
+    const [marker, setMarker] = useState(Math.floor(Math.random() * 17));
     const markerImage = GetMarkerImage(marker);
     const yellowMarkers = [22, 46, 148, 168];
     const redMarkers = [74, 99, 209, 238];
@@ -40,8 +41,6 @@ function Game()
     }
     const markerPosition = getMarkerPosition(marker);
     const isWinFunction = () => {
-        console.log(marker)
-        console.log(robots)
         if (!robots.includes(markerPosition)) return false;
         if (marker === 0) return true;
         if (marker < 5) return robots[0] === markerPosition;
@@ -57,6 +56,15 @@ function Game()
         setRobots(originalRobots);
     }
 
+    function OnVictoryClick()
+    {
+        setMoves(0);
+        const newRobots = [getRobotPosition(),getRobotPosition(),getRobotPosition(), getRobotPosition()];
+        setRobots(newRobots);
+        setOriginalRobots(newRobots);
+        setMarker(Math.floor(Math.random() * 17));
+    }
+
     return(
         <>
             <div className="topbar">
@@ -70,8 +78,8 @@ function Game()
                         <img src={markerImage}/>
                     </div>
                 </div>
-
                 {moves}
+                <Modal/>
             </div>
             <Board 
                 setMoves={setMoves} 
@@ -86,7 +94,7 @@ function Game()
                 markerPosition={markerPosition}
             />
             <div className="victory-container">
-                {isWin && <button className='victory'>Victory</button>}
+                {isWin && <button className='victory' onClick={OnVictoryClick}>Victory</button>}
             </div>
         </>
     )
