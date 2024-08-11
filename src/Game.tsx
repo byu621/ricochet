@@ -91,7 +91,6 @@ function Game()
                 blueMarkers={blueMarkers}
                 greenMarkers={greenMarkers}
                 portal={portal}
-                markerPosition={markerPosition}
             />
             <div className="victory-container">
                 {isWin && <button className='victory' onClick={OnVictoryClick}>Victory</button>}

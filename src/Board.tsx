@@ -13,10 +13,9 @@ interface Props {
     blueMarkers: number[]
     greenMarkers: number[]
     portal: number;
-    markerPosition: number;
 }
 
-function Board({setMoves, robots, setRobots, size, yellowMarkers, redMarkers, blueMarkers, greenMarkers, portal, markerPosition} : Props) {
+function Board({setMoves, robots, setRobots, size, yellowMarkers, redMarkers, blueMarkers, greenMarkers, portal} : Props) {
     const [selectedSquare, setSelectedSquare] = useState(5);
     const botWalls = [17, 22, 25, 30, 70, 74, 79, 80, 92, 99, 103, 104, 135, 136, 148, 150, 159, 160, 168, 173, 183, 193, 217, 222, 227];
     const rightWalls = [4, 10, 22, 24, 32, 46, 74, 86, 98, 107, 118, 120, 134, 136, 147, 165, 168, 188, 199, 209, 216, 227, 238, 244, 251];
