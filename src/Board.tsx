@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Square from "./Square";
 import useArrowKeyNavigation from "./useArrowKeyNavigation";
 import './Board.css'
@@ -8,17 +8,20 @@ interface Props {
     robots: number[];
     setRobots: Dispatch<SetStateAction<number[]>>;
     size: number;
+    yellowMarkers: number[]
+    redMarkers: number[]
+    blueMarkers: number[]
+    greenMarkers: number[]
+    portal: number;
+    markerPosition: number;
 }
 
-function Board({setMoves, robots, setRobots, size} : Props) {
+function Board({setMoves, robots, setRobots, size, yellowMarkers, redMarkers, blueMarkers, greenMarkers, portal, markerPosition} : Props) {
     const [selectedSquare, setSelectedSquare] = useState(5);
     const botWalls = [17, 22, 25, 30, 70, 74, 79, 80, 92, 99, 103, 104, 135, 136, 148, 150, 159, 160, 168, 173, 183, 193, 217, 222, 227];
     const rightWalls = [4, 10, 22, 24, 32, 46, 74, 86, 98, 107, 118, 120, 134, 136, 147, 165, 168, 188, 199, 209, 216, 227, 238, 244, 251];
-    const yellowMarkers = [22, 46, 148, 168];
-    const redMarkers = [74, 99, 209, 238];
-    const blueMarkers = [86, 108, 166, 189];
-    const greenMarkers = [25, 33, 217, 227];
-    const portal = 199;
+
+
 
     useArrowKeyNavigation({moveUp, moveDown, moveLeft, moveRight});
     function handleClick(index: number)
@@ -110,6 +113,7 @@ function Board({setMoves, robots, setRobots, size} : Props) {
                     index={i} 
                     handleClick={handleClick} 
                     isSelected={selectedSquare === i} 
+                    isRestricted={[119, 120, 135, 136].includes(i)}
                     isPortal={portal === i} 
                     isTopWall={botWalls.includes(i - size)} 
                     isBotWall={botWalls.includes(i)}

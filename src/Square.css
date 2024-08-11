@@ -10,6 +10,10 @@
     background-color: rgba(25, 241, 25, 0.532);
 }
 
+.item.restricted {
+    background-color: red;
+}
+
 .item.topWall {
     border-top: 1.5px red solid;
 }

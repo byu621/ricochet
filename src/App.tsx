@@ -6,7 +6,6 @@ function App() {
     <>
       <h2>Ricochet Robots</h2>
       <Game/>
-      <h2>asdf</h2>
     </>
   )
 }
